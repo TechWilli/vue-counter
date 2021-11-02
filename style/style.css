@@ -67,15 +67,36 @@
 .contador-container {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   width: 100%;
   gap: 1rem;
 }
 
 .contador {
   background-color: #ffffff;
+  border-radius: .25rem;
   padding: 1rem;
   font-size: 1.5rem;
+  font-weight: 500;
   width: 100%;
   text-align: center;
+  margin: 0 1rem;
+  transition: 300ms;
+}
+
+.instructions {
+  border-top: 1px solid #dddddd;
+  margin: 1rem 0;
+  padding-top: 1rem;
+  line-height: 1.5;
+}
+
+.esconder-botoes {
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: 1rem;
+  display: block;
+}
+
+.esconder-botoes:active {
+  color: var(--vue-color);
 }

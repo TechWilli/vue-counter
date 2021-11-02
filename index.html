@@ -14,18 +14,33 @@
 
 <body>
   <div id="app">
-    <div>
+    <section>
       <div class="card">
         <h3>Hello, {{greetings}}</h3>
         <span>This vue web page was created by:</span>
-        <a href="https://github.com/TechWilli" target="_blank">{{createdBy}}</a>
+        <a v-bind:href="myGithub" target="_blank">{{createdBy}}</a>
       </div>
       <div class="contador-container">
-        <button @click="decrease" type="button" class="contador-button">diminuir</button>
-        <div class="contador">{{contador}}</div>
-        <button @click="increase" type="button" class="contador-button">aumentar</button>
+        <button v-if="mostrarBotoes" @click="decrease" type="button" class="contador-button">diminuir</button>
+        <!-- pode-se usar apenas ":" antes do atributo para sinalizar que é a diretiva v-bind -->
+        <div class="contador" :style="getCounterAditionalStyle()">{{contador}}</div>
+        <!-- a diretiva v-on: aceita a manipulação de qualquer evento da tag html  -->
+        <!-- abaixo podemos usar o v-on: click ou o @click -->
+        <button v-if="mostrarBotoes" v-on:click="increase" type="button" class="contador-button">aumentar</button>
       </div>
-    </div>
+      <!-- podemos usar o template para não 
+        precisar ficar criando divs desnecessárias para usar o v-if, v-else, v-else-if, v-show...
+        para mostrar ou esconder blocos grandes -->
+      <template v-if="!mostrarBotoes">
+        <div class="instructions">
+          <p>Utilize as setas do teclado:</p>
+          <p><b><-</b> para diminuir</p>
+          <p><b>-></b> para aumentar</p>
+          <p><b>Esc</b> para zerar</p>
+        </div>
+      </template>
+      <span class="esconder-botoes" @click="handleEsconderBotoes">{{label}} botões de ação</span>
+    </section>
   </div>
 
   <script>
@@ -36,7 +51,11 @@
       data: {
         greetings: 'Vue.js!',
         createdBy: 'TechWilli',
-        contador: 0
+        contador: 0,
+        // para usar a diretiva v-bind e interagir com os atributos das tags
+        myGithub: "https://github.com/TechWilli",
+        mostrarBotoes: true,
+        label: 'Esconder'
       },
       // colocamos nossos métodos nessa propriedade
       methods: {
@@ -46,7 +65,57 @@
         // forma curta do ES6 para criar a função no objeto método
         decrease() {
           this.contador--
+        },
+        getCounterAditionalStyle() {
+
+          let style = {
+            margin: !this.mostrarBotoes && 0
+          }
+
+          if (this.contador < 0) {
+            style = {
+              ...style,
+              backgroundColor: '#ff6767',
+              boxShadow: '0 0 0 4px #ffbbbb',
+              color: '#ffffff'
+            }
+          }
+
+          if (this.contador > 10) {
+            style = {
+              ...style,
+              backgroundColor: '#7eabff',
+              boxShadow: '0 0 0 4px #b9d2ff',
+              color: '#ffffff'
+            }
+          }
+
+          return style
+        },
+        handleCounterKeys(event) {
+          // console.log('event', event)
+          if (event.key === 'ArrowLeft') {
+            this.contador--
+          }
+
+          if (event.key === 'ArrowRight') {
+            this.contador++
+          }
+
+          if (event.key === 'Escape') {
+            this.contador = 0
+          }
+        },
+        handleEsconderBotoes() {
+          this.mostrarBotoes = !this.mostrarBotoes
+          this.label = this.mostrarBotoes ? 'Esconder' : 'Mostrar'
         }
+      },
+      // usado para realizar lógica quando o component é criado
+      created: function () {
+        console.log('o component foi criado')
+
+        document.addEventListener('keydown', this.handleCounterKeys)
       }
     })
 
