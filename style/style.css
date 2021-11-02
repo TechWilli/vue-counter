@@ -1,0 +1,81 @@
+:root {
+  --vue-color: #41B883;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Fira Code', monospace;
+  color: #333333;
+}
+
+#app {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #fafafa;
+}
+
+.card {
+  border: 1px solid #dddddd;
+  border-radius: .25rem;
+  box-shadow: 0 0 10px rgb(0, 0, 0, .1);
+  padding: 1.75rem;
+  background-color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.card h3 {
+  font-weight: 600;
+  margin-bottom: .75rem;
+  width: fit-content;
+}
+
+.card h3::after {
+  content: '';
+  display: block;
+  margin-top: .25rem;
+  height: .25rem;
+  background-color: var(--vue-color);
+}
+
+.card a {
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--vue-color);
+}
+
+.contador-button {
+  border: none;
+  padding: 1rem;
+  font-size: 1.25rem;
+  background-color: var(--vue-color);
+  color: #ffffff;
+  border-radius: .25rem;
+  cursor: pointer;
+  transition: box-shadow 200ms;
+}
+
+.contador-button:active {
+  box-shadow: 0 0 0 4px #a3dfc4;
+}
+
+.contador-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 1rem;
+}
+
+.contador {
+  background-color: #ffffff;
+  padding: 1rem;
+  font-size: 1.5rem;
+  width: 100%;
+  text-align: center;
+}

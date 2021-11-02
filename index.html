@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue Counter</title>
+  <script src="./vue.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style/style.css">
+  </link>
+</head>
+
+<body>
+  <div id="app">
+    <div>
+      <div class="card">
+        <h3>Hello, {{greetings}}</h3>
+        <span>This vue web page was created by:</span>
+        <a href="https://github.com/TechWilli" target="_blank">{{createdBy}}</a>
+      </div>
+      <div class="contador-container">
+        <button @click="decrease" type="button" class="contador-button">diminuir</button>
+        <div class="contador">{{contador}}</div>
+        <button @click="increase" type="button" class="contador-button">aumentar</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const vm = new Vue({
+      // pegamos nosso elemento html na qual o vue executará
+      el: '#app',
+      // colocamos os dados a serem usados nessa propriedade
+      data: {
+        greetings: 'Vue.js!',
+        createdBy: 'TechWilli',
+        contador: 0
+      },
+      // colocamos nossos métodos nessa propriedade
+      methods: {
+        increase: function () {
+          this.contador++
+        },
+        // forma curta do ES6 para criar a função no objeto método
+        decrease() {
+          this.contador--
+        }
+      }
+    })
+
+    console.log('vm Vue:', vm)
+  </script>
+</body>
+
+</html>
