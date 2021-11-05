@@ -1,5 +1,14 @@
 :root {
-  --vue-color: #41B883;
+  --border-color: #dddddd;
+  --background-light: #fafafa;
+  --text-color: #333333;
+  --green: #41B883;
+  --light-green: #9bffd2;
+  --red: #ff6767;
+  --light-red: #ffbbbb;
+  --blue: #7eabff;
+  --light-blue: #b9d2ff;
+  --box-shadow-color: rgb(0, 0, 0, .1);
 }
 
 * {
@@ -7,7 +16,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Fira Code', monospace;
-  color: #333333;
+  color: var(--text-color);
 }
 
 #app {
@@ -17,13 +26,13 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: #fafafa;
+  background-color: var(--background-light);
 }
 
 .card {
-  border: 1px solid #dddddd;
+  border: 1px solid var(--border-color);
   border-radius: .25rem;
-  box-shadow: 0 0 10px rgb(0, 0, 0, .1);
+  box-shadow: 0 0 10px var(--box-shadow-color);
   padding: 1.75rem;
   background-color: #ffffff;
   margin-bottom: 1rem;
@@ -40,20 +49,20 @@
   display: block;
   margin-top: .25rem;
   height: .25rem;
-  background-color: var(--vue-color);
+  background-color: var(--green);
 }
 
 .card a {
   text-decoration: none;
   font-weight: 600;
-  color: var(--vue-color);
+  color: var(--green);
 }
 
 .contador-button {
   border: none;
   padding: 1rem;
   font-size: 1.25rem;
-  background-color: var(--vue-color);
+  background-color: var(--green);
   color: #ffffff;
   border-radius: .25rem;
   cursor: pointer;
@@ -84,7 +93,7 @@
 }
 
 .instructions {
-  border-top: 1px solid #dddddd;
+  border-top: 1px solid var(--border-color);
   margin: 1rem 0;
   padding-top: 1rem;
   line-height: 1.5;
@@ -98,5 +107,5 @@
 }
 
 .esconder-botoes:active {
-  color: var(--vue-color);
+  color: var(--green);
 }
